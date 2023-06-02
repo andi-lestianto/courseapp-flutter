@@ -1,11 +1,8 @@
-import 'package:courseapp/app/helper/mainnavigation_helper.dart';
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
 import 'package:courseapp/app/widget/textfield_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class ModifyLecturerDialog {
   show(BuildContext context) {

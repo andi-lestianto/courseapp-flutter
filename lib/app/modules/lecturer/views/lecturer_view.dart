@@ -1,4 +1,3 @@
-import 'package:courseapp/app/helper/mainnavigation_helper.dart';
 import 'package:courseapp/app/modules/lecturer/widget/modifylecturer_dialog.dart';
 import 'package:courseapp/app/widget/customappbar_widget.dart';
 import 'package:courseapp/app/widget/datacontainer_widget.dart';
