@@ -1,3 +1,4 @@
+import 'package:courseapp/app/modules/course/controllers/course_controller.dart';
 import 'package:courseapp/app/modules/lecturer/controllers/lecturer_controller.dart';
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
@@ -8,13 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class ModifyLecturerDialog {
+class ModifyCourseDialog {
   show(BuildContext context, {required bool isAdd}) {
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
       context: context,
-      builder: (context) => GetBuilder<LecturerController>(
+      builder: (context) => GetBuilder<CourseController>(
         builder: (_) => Container(
           padding: EdgeInsets.all(12.w),
           decoration: BoxDecoration(
@@ -29,7 +30,7 @@ class ModifyLecturerDialog {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  (isAdd ? 'Tambah' : 'Edit') + ' Data Dosen',
+                  (isAdd ? 'Tambah' : 'Edit') + ' Data Mata Kuliah',
                   style: FontTheme.semibold
                       .copyWith(color: ColorTheme.darkGray, fontSize: 16.sp),
                 ),
@@ -38,35 +39,43 @@ class ModifyLecturerDialog {
                 ),
                 TextFieldWidget(
                     isDisable: isAdd ? false : true,
-                    label: 'NIDN',
-                    textEditingController: _.nidnController),
+                    label: 'ID Mata Kuliah',
+                    textEditingController: _.idController),
                 SizedBox(
                   height: 18.w,
                 ),
                 TextFieldWidget(
-                    label: 'Nama Dosen',
+                    label: 'Nama Mata Kuliah',
                     textEditingController: _.nameController),
                 SizedBox(
                   height: 18.w,
                 ),
-                TextFieldWidget(
-                    label: 'Alamat', textEditingController: _.alamatController),
-                SizedBox(
-                  height: 18.w,
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFieldWidget(
+                          label: 'Jumlah SKS',
+                          textEditingController: _.sksController),
+                    ),
+                    SizedBox(
+                      width: 12.w,
+                    ),
+                    Expanded(
+                      child: TextFieldWidget(
+                          label: 'Semester',
+                          textEditingController: _.semesterController),
+                    )
+                  ],
                 ),
-                TextFieldWidget(
-                    label: 'Tanggal Lahir',
-                    isDatePicker: true,
-                    textEditingController: _.tanggalController),
                 SizedBox(
                   height: 18.w,
                 ),
                 DropdownBtnWidget(
                     label: 'Jenis Kelamin',
-                    data: ['Laki - Laki', 'Perempuan'],
-                    selectedValue: _.selectedJenkel,
+                    data: _.lecturerData,
+                    selectedValue: _.selectedLecturer,
                     onSelected: (value) {
-                      _.updateJenkel(value);
+                      _.updateLecturer(value);
                     }),
                 SizedBox(
                   height: 18.w,

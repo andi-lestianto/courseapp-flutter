@@ -11,21 +11,22 @@ class NetworkImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipOval(
-      child: CachedNetworkImage(
-        imageUrl: RandomImage().getImageUrl(),
-        progressIndicatorBuilder: (context, url, progress) => Container(
-          decoration: BoxDecoration(
-            color: ColorTheme.white,
-          ),
-          child: Center(
-            child: SpinKitDoubleBounce(
-              color: ColorTheme.mainBlue,
-            ),
-          ),
-        ),
-        errorWidget: (context, url, error) =>
-            SvgPicture.asset('assets/icon/ic-profile.svg'),
-      ),
+      child: SvgPicture.asset('assets/icon/ic-profile.svg'),
+      // child: CachedNetworkImage(
+      //   imageUrl: RandomImage().getImageUrl(),
+      //   progressIndicatorBuilder: (context, url, progress) => Container(
+      //     decoration: BoxDecoration(
+      //       color: ColorTheme.white,
+      //     ),
+      //     child: Center(
+      //       child: SpinKitDoubleBounce(
+      //         color: ColorTheme.mainBlue,
+      //       ),
+      //     ),
+      //   ),
+      //   errorWidget: (context, url, error) =>
+      //       SvgPicture.asset('assets/icon/ic-profile.svg'),
+      // ),
     );
   }
 }

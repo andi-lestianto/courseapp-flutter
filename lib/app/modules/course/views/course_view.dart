@@ -1,3 +1,4 @@
+import 'package:courseapp/app/modules/course/widget/modifycourse_dialog.dart';
 import 'package:courseapp/app/widget/customappbar_widget.dart';
 import 'package:courseapp/app/widget/datacontainer_widget.dart';
 import 'package:courseapp/app/widget/fab_widget.dart';
@@ -30,12 +31,16 @@ class CourseView extends GetView<CourseController> {
                     itemCount: 10,
                     itemBuilder: (context, index) => DataContainerWidget(
                           showProfilePict: false,
-                          onEdit: () {},
+                          onEdit: () {
+                            ModifyCourseDialog().show(context, isAdd: false);
+                          },
                         )),
               )
             ],
           ),
-          floatingActionButton: FabWidget(onPressed: () {})),
+          floatingActionButton: FabWidget(onPressed: () {
+            ModifyCourseDialog().show(context, isAdd: true);
+          })),
     );
   }
 }
