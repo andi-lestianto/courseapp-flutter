@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ModifyUserDialog {
-  show(BuildContext context, {required bool isAdd}) {
+  show(BuildContext context, {required bool isAdd, String? idUser}) {
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -59,7 +59,15 @@ class ModifyUserDialog {
                 SizedBox(
                   height: 18.w,
                 ),
-                CustomBtnWidget(label: 'Simpan', onPressed: () {}),
+                CustomBtnWidget(
+                    label: 'Simpan',
+                    onPressed: () {
+                      if (isAdd) {
+                        _.insertUser();
+                      } else {
+                        _.updateUser(idUser.toString());
+                      }
+                    }),
               ],
             ),
           ),

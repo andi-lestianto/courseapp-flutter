@@ -78,13 +78,13 @@ class LecturerController extends GetxController {
       if (apiResponse.reqStatus == ReqStatus.done) {
         Toast().showSuccess(
             title: 'Berhasil', message: apiResponse.data['message']);
+        getAllLecturer();
         MainNavigation.homeNav.currentState!.maybePop();
       } else {
         Toast()
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
-    getAllLecturer();
   }
 
   Future<void> updateLecturer() async {
@@ -106,13 +106,13 @@ class LecturerController extends GetxController {
       if (apiResponse.reqStatus == ReqStatus.done) {
         Toast().showSuccess(
             title: 'Berhasil', message: apiResponse.data['message']);
+        getAllLecturer();
         MainNavigation.homeNav.currentState!.maybePop();
       } else {
         Toast()
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
-    getAllLecturer();
   }
 
   Future<void> deleteLecturer(String nidn) async {
@@ -121,18 +121,17 @@ class LecturerController extends GetxController {
     if (apiResponse.reqStatus == ReqStatus.done) {
       Toast()
           .showSuccess(title: 'Berhasil', message: apiResponse.data['message']);
+      getAllLecturer();
       MainNavigation.homeNav.currentState!.maybePop();
     } else {
       Toast()
           .showAlert(title: 'Gagal', message: apiResponse.message.toString());
     }
-    getAllLecturer();
   }
 
   List<LecturerModel> filteredLecturer = [];
 
   searchLecturer() {
-    print('hoiii');
     if (listLecturer.data != null) {
       filteredLecturer = listLecturer.data!
           .where((element) => element.namaDosen!
