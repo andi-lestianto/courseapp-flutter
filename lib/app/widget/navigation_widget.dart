@@ -3,6 +3,7 @@ import 'package:courseapp/app/model/page_model.dart';
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,8 +21,51 @@ class NavigationWidget extends StatelessWidget {
         if (data != null && currentRoute != data!.routes) {
           MainNavigation.homeNav.currentState!
               .pushReplacementNamed(data!.routes);
+          Get.back();
+        } else {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  'Konfirmasi',
+                  style: FontTheme.semibold
+                      .copyWith(color: ColorTheme.darkGray, fontSize: 16.sp),
+                ),
+                content: Text(
+                  'Yakin ingin keluar aplikasi?',
+                  style: FontTheme.base
+                      .copyWith(fontSize: 14.sp, color: ColorTheme.darkGray),
+                ),
+                actions: <Widget>[
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          backgroundColor: ColorTheme.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          )),
+                      onPressed: () {
+                        SystemNavigator.pop();
+                      },
+                      child: const Text('Ya')),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        backgroundColor: ColorTheme.mainBlue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        )),
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                    child: const Text('Tidak'),
+                  ),
+                ],
+              );
+            },
+          );
         }
-        Get.back();
       },
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
