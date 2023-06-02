@@ -9,6 +9,7 @@ abstract class Routes {
   static const LECTURER = _Paths.LECTURER;
   static const COURSE = _Paths.COURSE;
   static const USER = _Paths.USER;
+  static const SPLASH = _Paths.SPLASH;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const LECTURER = '/lecturer';
   static const COURSE = '/course';
   static const USER = '/user';
+  static const SPLASH = '/splash';
 }

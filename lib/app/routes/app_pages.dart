@@ -8,6 +8,8 @@ import 'package:courseapp/app/modules/lecturer/bindings/lecturer_binding.dart';
 import 'package:courseapp/app/modules/lecturer/views/lecturer_view.dart';
 import 'package:courseapp/app/modules/login/bindings/login_binding.dart';
 import 'package:courseapp/app/modules/login/views/login_view.dart';
+import 'package:courseapp/app/modules/splash/bindings/splash_binding.dart';
+import 'package:courseapp/app/modules/splash/views/splash_view.dart';
 import 'package:courseapp/app/modules/user/bindings/user_binding.dart';
 import 'package:courseapp/app/modules/user/views/user_view.dart';
 
@@ -16,7 +18,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.USER,
       page: () => UserView(),
       binding: UserBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }
