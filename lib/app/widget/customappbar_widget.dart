@@ -9,13 +9,13 @@ import 'package:get/get.dart';
 
 class CustomAppBar extends StatefulWidget {
   final TextEditingController textEditingController;
-  final MyValueCallback<String> onSubmit;
+  final MyValueCallback<String> onChanged;
   final String label;
   const CustomAppBar(
       {super.key,
       required this.label,
       required this.textEditingController,
-      required this.onSubmit});
+      required this.onChanged});
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -28,6 +28,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     setState(() {
       showsearch = !showsearch;
       widget.textEditingController.clear();
+      widget.onChanged('');
     });
   }
 
@@ -64,7 +65,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                                 horizontal: 10.w, vertical: 10.w),
                             child: TextField(
                               controller: widget.textEditingController,
-                              textInputAction: TextInputAction.search,
+                              textInputAction: TextInputAction.done,
                               style: FontTheme.base.copyWith(fontSize: 12.sp),
                               decoration: InputDecoration(
                                   hintText: 'Ketikkan keyword disini',
@@ -78,9 +79,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                                       borderSide: BorderSide.none,
                                       borderRadius:
                                           BorderRadius.circular(8.r))),
-                              onSubmitted: (value) {
-                                widget.onSubmit(value);
-                                setShowSearch();
+                              onChanged: (value) {
+                                widget.onChanged(value);
                               },
                             ),
                           ),

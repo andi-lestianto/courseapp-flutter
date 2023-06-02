@@ -1,5 +1,4 @@
 import 'package:courseapp/app/modules/course/controllers/course_controller.dart';
-import 'package:courseapp/app/modules/lecturer/controllers/lecturer_controller.dart';
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
 import 'package:courseapp/app/widget/custombtn_widget.dart';

@@ -1,10 +1,8 @@
-import 'package:courseapp/app/modules/lecturer/controllers/lecturer_controller.dart';
 import 'package:courseapp/app/modules/user/controllers/user_controller.dart';
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
 import 'package:courseapp/app/widget/custombtn_widget.dart';
 import 'package:courseapp/app/widget/textfield_widget.dart';
-import 'package:courseapp/app/widget/dropdownbtn_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

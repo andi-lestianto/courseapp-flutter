@@ -44,8 +44,12 @@ class DioClient {
         apiResponse = ApiResponse.done(response.data);
       }
       return apiResponse;
+    } on DioError catch (e) {
+      print(e);
+      return ApiResponse.error('Terjadi Kesalahan');
     } catch (e) {
-      rethrow;
+      apiResponse = ApiResponse.error(e.toString());
+      return apiResponse;
     }
   }
 
@@ -53,6 +57,48 @@ class DioClient {
     try {
       apiResponse = ApiResponse.loading();
       final Response response = await dio.post(url, data: data);
+      if (response.statusCode == 200) {
+        apiResponse = ApiResponse.done(response.data);
+      }
+      return apiResponse;
+    } on DioError catch (e) {
+      if (e.response != null) {
+        apiResponse = ApiResponse.error(e.response!.data['message']);
+        return apiResponse;
+      }
+      return ApiResponse.error('Terjadi Kesalahan');
+    } catch (e) {
+      apiResponse = ApiResponse.error(e.toString());
+      return apiResponse;
+    }
+  }
+
+  Future<ApiResponse> put(
+      String url, Map<String, dynamic> data, Map<String, dynamic> id) async {
+    try {
+      apiResponse = ApiResponse.loading();
+      final Response response =
+          await dio.put(url, data: data, queryParameters: id);
+      if (response.statusCode == 200) {
+        apiResponse = ApiResponse.done(response.data);
+      }
+      return apiResponse;
+    } on DioError catch (e) {
+      if (e.response != null) {
+        apiResponse = ApiResponse.error(e.response!.data['message']);
+        return apiResponse;
+      }
+      return ApiResponse.error('Terjadi Kesalahan');
+    } catch (e) {
+      apiResponse = ApiResponse.error(e.toString());
+      return apiResponse;
+    }
+  }
+
+  Future<ApiResponse> delete(String url, Map<String, dynamic> id) async {
+    try {
+      apiResponse = ApiResponse.loading();
+      final Response response = await dio.delete(url, queryParameters: id);
       if (response.statusCode == 200) {
         apiResponse = ApiResponse.done(response.data);
       }

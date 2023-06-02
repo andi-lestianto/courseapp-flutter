@@ -19,7 +19,7 @@ class UserView extends GetView<UserController> {
           children: [
             CustomAppBar(
                 textEditingController: _.searchController,
-                onSubmit: (value) {
+                onChanged: (value) {
                   print(value);
                 },
                 label: 'Data Pengguna'),
@@ -30,9 +30,13 @@ class UserView extends GetView<UserController> {
                   shrinkWrap: true,
                   itemCount: 10,
                   itemBuilder: (context, index) => DataContainerWidget(
+                        uniqId: index.toString(),
+                        title: 'Andi Lestianto',
+                        subtitle: 'haha',
                         onEdit: () {
                           ModifyUserDialog().show(context, isAdd: false);
                         },
+                        onDelete: () {},
                       )),
             )
           ],

@@ -1,5 +1,4 @@
 import 'package:courseapp/app/model/apiresponse.dart';
-import 'package:courseapp/app/routes/app_pages.dart';
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
 import 'package:courseapp/app/widget/custombtn_widget.dart';

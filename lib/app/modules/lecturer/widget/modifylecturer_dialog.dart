@@ -71,7 +71,15 @@ class ModifyLecturerDialog {
                 SizedBox(
                   height: 18.w,
                 ),
-                CustomBtnWidget(label: 'Simpan', onPressed: () {}),
+                CustomBtnWidget(
+                    label: 'Simpan',
+                    onPressed: () {
+                      if (isAdd) {
+                        _.insertLecturer();
+                      } else {
+                        _.updateLecturer();
+                      }
+                    }),
               ],
             ),
           ),

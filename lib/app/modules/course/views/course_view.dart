@@ -19,7 +19,7 @@ class CourseView extends GetView<CourseController> {
             children: [
               CustomAppBar(
                   textEditingController: _.searchController,
-                  onSubmit: (value) {
+                  onChanged: (value) {
                     print(value);
                   },
                   label: 'Data Mata Kuliah'),
@@ -30,10 +30,14 @@ class CourseView extends GetView<CourseController> {
                     shrinkWrap: true,
                     itemCount: 10,
                     itemBuilder: (context, index) => DataContainerWidget(
+                          uniqId: index.toString(),
+                          title: 'Andi Lestianto',
+                          subtitle: 'haha',
                           showProfilePict: false,
                           onEdit: () {
                             ModifyCourseDialog().show(context, isAdd: false);
                           },
+                          onDelete: () {},
                         )),
               )
             ],
