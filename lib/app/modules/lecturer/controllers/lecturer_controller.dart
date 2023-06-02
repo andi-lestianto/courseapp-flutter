@@ -23,7 +23,7 @@ class LecturerController extends GetxController {
 
   fillTextField(LecturerModel data) {
     nidnController.text = data.nidn.toString();
-    nameController.text = data.namaDosen.toString();
+    nameController.text = data.nama_dosen.toString();
     alamatController.text = data.alamat.toString();
     tanggalController.text = data.tglLahir.toString();
     if (data.jnsKelamin == 'L') {
@@ -121,12 +121,13 @@ class LecturerController extends GetxController {
     if (apiResponse.reqStatus == ReqStatus.done) {
       Toast()
           .showSuccess(title: 'Berhasil', message: apiResponse.data['message']);
-      getAllLecturer();
+
       MainNavigation.homeNav.currentState!.maybePop();
     } else {
       Toast()
           .showAlert(title: 'Gagal', message: apiResponse.message.toString());
     }
+    getAllLecturer();
   }
 
   List<LecturerModel> filteredLecturer = [];
@@ -134,7 +135,7 @@ class LecturerController extends GetxController {
   searchLecturer() {
     if (listLecturer.data != null) {
       filteredLecturer = listLecturer.data!
-          .where((element) => element.namaDosen!
+          .where((element) => element.nama_dosen!
               .toLowerCase()
               .contains(searchController.text.toLowerCase()))
           .toList();

@@ -42,7 +42,7 @@ class LecturerView extends GetView<LecturerController> {
                                 itemBuilder: (context, index) =>
                                     DataContainerWidget(
                                   uniqId: index.toString(),
-                                  title: _.filteredLecturer[index].namaDosen
+                                  title: _.filteredLecturer[index].nama_dosen
                                       .toString(),
                                   subtitle: _.filteredLecturer[index].alamat
                                       .toString(),
@@ -51,6 +51,7 @@ class LecturerView extends GetView<LecturerController> {
                                       context,
                                       isAdd: false,
                                     );
+                                    _.clearTextField();
                                     _.fillTextField(_.filteredLecturer[index]);
                                   },
                                   onDelete: () {
@@ -78,7 +79,7 @@ class LecturerView extends GetView<LecturerController> {
                                         DataContainerWidget(
                                       uniqId: index.toString(),
                                       title: _
-                                          .listLecturer.data![index].namaDosen
+                                          .listLecturer.data![index].nama_dosen
                                           .toString(),
                                       subtitle: _
                                           .listLecturer.data![index].alamat
@@ -88,6 +89,7 @@ class LecturerView extends GetView<LecturerController> {
                                           context,
                                           isAdd: false,
                                         );
+                                        _.clearTextField();
                                         _.fillTextField(
                                             _.listLecturer.data![index]);
                                       },

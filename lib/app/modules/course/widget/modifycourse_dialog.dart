@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ModifyCourseDialog {
-  show(BuildContext context, {required bool isAdd}) {
+  show(BuildContext context, {required bool isAdd, String? idcourse}) {
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -53,6 +53,7 @@ class ModifyCourseDialog {
                   children: [
                     Expanded(
                       child: TextFieldWidget(
+                          numberOnly: true,
                           label: 'Jumlah SKS',
                           textEditingController: _.sksController),
                     ),
@@ -61,6 +62,7 @@ class ModifyCourseDialog {
                     ),
                     Expanded(
                       child: TextFieldWidget(
+                          numberOnly: true,
                           label: 'Semester',
                           textEditingController: _.semesterController),
                     )
@@ -72,14 +74,22 @@ class ModifyCourseDialog {
                 DropdownBtnWidget(
                     label: 'Jenis Kelamin',
                     data: _.lecturerData,
-                    selectedValue: _.selectedLecturer,
+                    selectedValue: _.selectedLecturer.toString(),
                     onSelected: (value) {
                       _.updateLecturer(value);
                     }),
                 SizedBox(
                   height: 18.w,
                 ),
-                CustomBtnWidget(label: 'Simpan', onPressed: () {}),
+                CustomBtnWidget(
+                    label: 'Simpan',
+                    onPressed: () {
+                      if (isAdd) {
+                        _.insertCourse();
+                      } else {
+                        _.updateCourse(idcourse.toString());
+                      }
+                    }),
               ],
             ),
           ),

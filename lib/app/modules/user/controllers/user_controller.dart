@@ -107,12 +107,12 @@ class UserController extends GetxController {
     if (apiResponse.reqStatus == ReqStatus.done) {
       Toast()
           .showSuccess(title: 'Berhasil', message: apiResponse.data['message']);
-      getAllUser();
       MainNavigation.homeNav.currentState!.maybePop();
     } else {
       Toast()
           .showAlert(title: 'Gagal', message: apiResponse.message.toString());
     }
+    getAllUser();
   }
 
   List<UserModel> filteredUser = [];

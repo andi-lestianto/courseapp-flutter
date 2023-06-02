@@ -108,7 +108,7 @@ class UserView extends GetView<UserController> {
           ],
         ),
         floatingActionButton: FabWidget(onPressed: () {
-          ModifyUserDialog().show(context, isAdd: true, idUser: null);
+          ModifyUserDialog().show(context, isAdd: true);
           _.clearTextField();
         }),
       ),

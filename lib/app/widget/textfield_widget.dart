@@ -1,12 +1,14 @@
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final String label;
   final TextEditingController textEditingController;
+  final bool? numberOnly;
   final bool? isDisable;
   final bool? isPassword;
   final bool? isDatePicker;
@@ -16,7 +18,8 @@ class TextFieldWidget extends StatefulWidget {
       required this.textEditingController,
       this.isPassword,
       this.isDatePicker,
-      this.isDisable});
+      this.isDisable,
+      this.numberOnly});
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -50,6 +53,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               child: SizedBox(
                 height: 50.w,
                 child: TextField(
+                  inputFormatters: widget.numberOnly == true
+                      ? [FilteringTextInputFormatter.digitsOnly]
+                      : [],
+                  keyboardType:
+                      widget.numberOnly == true ? TextInputType.number : null,
                   readOnly:
                       widget.isDatePicker == true || widget.isDisable == true
                           ? true
