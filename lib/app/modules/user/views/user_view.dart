@@ -1,3 +1,4 @@
+import 'package:courseapp/app/modules/user/widget/modifyuser_dialog.dart';
 import 'package:courseapp/app/widget/customappbar_widget.dart';
 import 'package:courseapp/app/widget/datacontainer_widget.dart';
 import 'package:courseapp/app/widget/fab_widget.dart';
@@ -29,12 +30,16 @@ class UserView extends GetView<UserController> {
                   shrinkWrap: true,
                   itemCount: 10,
                   itemBuilder: (context, index) => DataContainerWidget(
-                        onEdit: () {},
+                        onEdit: () {
+                          ModifyUserDialog().show(context, isAdd: false);
+                        },
                       )),
             )
           ],
         ),
-        floatingActionButton: FabWidget(onPressed: () {}),
+        floatingActionButton: FabWidget(onPressed: () {
+          ModifyUserDialog().show(context, isAdd: true);
+        }),
       ),
     );
   }

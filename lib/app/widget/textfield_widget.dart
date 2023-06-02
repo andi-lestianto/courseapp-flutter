@@ -23,11 +23,11 @@ class TextFieldWidget extends StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
-  bool showPass = false;
+  bool obsecureTxt = true;
 
   changeObsecureTxt() {
     setState(() {
-      showPass = !showPass;
+      obsecureTxt = !obsecureTxt;
     });
   }
 
@@ -54,7 +54,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                       widget.isDatePicker == true || widget.isDisable == true
                           ? true
                           : false,
-                  obscureText: showPass,
+                  obscureText: obsecureTxt,
                   controller: widget.textEditingController,
                   style: FontTheme.base.copyWith(fontSize: 12.sp),
                   decoration: InputDecoration(
@@ -65,7 +65,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                               padding: EdgeInsets.only(right: 12.w),
                               child: InkWell(
                                 onTap: () => changeObsecureTxt(),
-                                child: SvgPicture.asset(showPass
+                                child: SvgPicture.asset(obsecureTxt
                                     ? 'assets/icon/ic-eyeslash.svg'
                                     : 'assets/icon/ic-eye.svg'),
                               ))

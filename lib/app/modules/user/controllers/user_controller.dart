@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 
 class UserController extends GetxController {
   final TextEditingController searchController = TextEditingController();
-  //TODO: Implement UserController
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController confirmPassController = TextEditingController();
 
   final count = 0.obs;
   @override
