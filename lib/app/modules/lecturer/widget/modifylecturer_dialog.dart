@@ -37,6 +37,7 @@ class ModifyLecturerDialog {
                   height: 18.w,
                 ),
                 TextFieldWidget(
+                    numberOnly: true,
                     isDisable: isAdd ? false : true,
                     label: 'NIDN',
                     textEditingController: _.nidnController),

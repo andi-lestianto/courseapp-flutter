@@ -151,7 +151,7 @@ class CourseController extends GetxController {
 
   List<CourseModel> filteredCourse = [];
 
-  searchUser() {
+  searchCourse() {
     if (listCourse.data != null) {
       filteredCourse = listCourse.data!
           .where((element) => element.namaMatkul!

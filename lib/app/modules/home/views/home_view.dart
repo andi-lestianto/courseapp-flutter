@@ -112,7 +112,10 @@ class HomeView extends GetView<HomeController> {
                               child: SizedBox(
                                   height: 125.w,
                                   width: 125.w,
-                                  child: NetworkImageWidget()),
+                                  child: NetworkImageWidget(
+                                    imgUrl:
+                                        authCtrl.loggedUser!.pict.toString(),
+                                  )),
                             ),
                             SizedBox(
                               height: 20.w,

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../controllers/course_controller.dart';
 
@@ -23,7 +24,7 @@ class CourseView extends GetView<CourseController> {
               CustomAppBar(
                   textEditingController: _.searchController,
                   onChanged: (value) {
-                    print(value);
+                    _.searchCourse();
                   },
                   label: 'Data Mata Kuliah'),
               Expanded(
@@ -64,14 +65,27 @@ class CourseView extends GetView<CourseController> {
                                 ),
                               )
                             : _.searchController.text != ''
-                                ? Center(
-                                    child: Text(
-                                    'Data tidak ditemukan',
-                                    style: FontTheme.base.copyWith(
-                                      fontSize: 12,
-                                      color: ColorTheme.darkGray,
-                                    ),
-                                  ))
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 100.w,
+                                        child: LottieBuilder.asset(
+                                          'assets/lottie/lottie-failed.json',
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 12.w,
+                                      ),
+                                      Text(
+                                        'Data tidak ditemukan',
+                                        style: FontTheme.base.copyWith(
+                                          fontSize: 12,
+                                          color: ColorTheme.darkGray,
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 : ListView.builder(
                                     padding: EdgeInsets.only(top: 10.w),
                                     physics: BouncingScrollPhysics(),

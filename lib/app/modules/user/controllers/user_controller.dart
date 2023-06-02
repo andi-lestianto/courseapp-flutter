@@ -1,4 +1,5 @@
 import 'package:courseapp/app/helper/mainnavigation_helper.dart';
+import 'package:courseapp/app/helper/randomimgurl_helper.dart';
 import 'package:courseapp/app/model/apiresponse.dart';
 import 'package:courseapp/app/model/user_model.dart';
 import 'package:courseapp/app/services/dioclient.dart';
@@ -59,6 +60,7 @@ class UserController extends GetxController {
         'name': nameController.text,
         'email': emailController.text,
         'password': passController.text,
+        'pict': RandomImage().getImageUrl()
       });
       if (apiResponse.reqStatus == ReqStatus.done) {
         Toast().showSuccess(

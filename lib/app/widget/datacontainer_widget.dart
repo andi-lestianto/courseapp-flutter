@@ -10,17 +10,18 @@ class DataContainerWidget extends StatelessWidget {
   final String uniqId;
   final String title;
   final String subtitle;
-  final bool? showProfilePict;
+  final String? imgUrl;
+
   final Function onEdit;
   final Function onDelete;
   const DataContainerWidget(
       {super.key,
-      this.showProfilePict = true,
       required this.onEdit,
       required this.title,
       required this.subtitle,
       required this.uniqId,
-      required this.onDelete});
+      required this.onDelete,
+      this.imgUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -100,11 +101,15 @@ class DataContainerWidget extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16.w),
         child: Row(
           children: [
-            if (showProfilePict == true)
+            if (imgUrl != null)
               Row(
                 children: [
                   SizedBox(
-                      height: 60.w, width: 60.w, child: NetworkImageWidget()),
+                      height: 60.w,
+                      width: 60.w,
+                      child: NetworkImageWidget(
+                        imgUrl: imgUrl.toString(),
+                      )),
                   SizedBox(
                     width: 12.w,
                   ),

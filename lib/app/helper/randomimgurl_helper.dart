@@ -3,11 +3,6 @@ class RandomImage {
   String imageUrl = url + DateTime.now().toString();
 
   String getImageUrl() {
-    return url +
-        DateTime.now()
-            .toString()
-            .replaceAll('-', '')
-            .replaceAll(':', '')
-            .replaceAll('.', '');
+    return url + DateTime.now().millisecondsSinceEpoch.toString();
   }
 }

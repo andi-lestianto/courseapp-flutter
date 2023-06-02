@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../controllers/user_controller.dart';
 
@@ -44,6 +45,7 @@ class UserView extends GetView<UserController> {
                                   DataContainerWidget(
                                 uniqId: index.toString(),
                                 title: _.filteredUser[index].name.toString(),
+                                imgUrl: _.filteredUser[index].pict,
                                 subtitle:
                                     _.filteredUser[index].email.toString(),
                                 onEdit: () {
@@ -61,14 +63,27 @@ class UserView extends GetView<UserController> {
                               ),
                             )
                           : _.searchController.text != ''
-                              ? Center(
-                                  child: Text(
-                                  'Data tidak ditemukan',
-                                  style: FontTheme.base.copyWith(
-                                    fontSize: 12,
-                                    color: ColorTheme.darkGray,
-                                  ),
-                                ))
+                              ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 100.w,
+                                      child: LottieBuilder.asset(
+                                        'assets/lottie/lottie-failed.json',
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 12.w,
+                                    ),
+                                    Text(
+                                      'Data tidak ditemukan',
+                                      style: FontTheme.base.copyWith(
+                                        fontSize: 12,
+                                        color: ColorTheme.darkGray,
+                                      ),
+                                    ),
+                                  ],
+                                )
                               : ListView.builder(
                                   padding: EdgeInsets.only(top: 10.w),
                                   physics: BouncingScrollPhysics(),
@@ -81,6 +96,7 @@ class UserView extends GetView<UserController> {
                                         _.listUser.data![index].name.toString(),
                                     subtitle: _.listUser.data![index].email
                                         .toString(),
+                                    imgUrl: _.listUser.data![index].pict,
                                     onEdit: () {
                                       ModifyUserDialog().show(context,
                                           isAdd: false,

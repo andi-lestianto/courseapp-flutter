@@ -8,6 +8,7 @@ import 'package:courseapp/app/widget/fab_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../controllers/lecturer_controller.dart';
 
@@ -46,6 +47,7 @@ class LecturerView extends GetView<LecturerController> {
                                       .toString(),
                                   subtitle: _.filteredLecturer[index].alamat
                                       .toString(),
+                                  imgUrl: _.filteredLecturer[index].pict,
                                   onEdit: () {
                                     ModifyLecturerDialog().show(
                                       context,
@@ -62,14 +64,27 @@ class LecturerView extends GetView<LecturerController> {
                                 ),
                               )
                             : _.searchController.text != ''
-                                ? Center(
-                                    child: Text(
-                                    'Data tidak ditemukan',
-                                    style: FontTheme.base.copyWith(
-                                      fontSize: 12,
-                                      color: ColorTheme.darkGray,
-                                    ),
-                                  ))
+                                ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 100.w,
+                                        child: LottieBuilder.asset(
+                                          'assets/lottie/lottie-failed.json',
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 12.w,
+                                      ),
+                                      Text(
+                                        'Data tidak ditemukan',
+                                        style: FontTheme.base.copyWith(
+                                          fontSize: 12,
+                                          color: ColorTheme.darkGray,
+                                        ),
+                                      ),
+                                    ],
+                                  )
                                 : ListView.builder(
                                     padding: EdgeInsets.only(top: 10.w),
                                     physics: BouncingScrollPhysics(),
@@ -81,6 +96,7 @@ class LecturerView extends GetView<LecturerController> {
                                       title: _
                                           .listLecturer.data![index].nama_dosen
                                           .toString(),
+                                      imgUrl: _.listLecturer.data![index].pict,
                                       subtitle: _
                                           .listLecturer.data![index].alamat
                                           .toString(),

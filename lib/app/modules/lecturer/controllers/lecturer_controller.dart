@@ -1,4 +1,5 @@
 import 'package:courseapp/app/helper/mainnavigation_helper.dart';
+import 'package:courseapp/app/helper/randomimgurl_helper.dart';
 import 'package:courseapp/app/model/apiresponse.dart';
 import 'package:courseapp/app/modules/lecturer/model/lecturer_model.dart';
 import 'package:courseapp/app/services/dioclient.dart';
@@ -73,7 +74,8 @@ class LecturerController extends GetxController {
         'nama_dosen': nameController.text,
         'alamat': alamatController.text,
         'tgl_lahir': tanggalController.text,
-        'jns_kelamin': selectedJenkel.substring(0, 1)
+        'jns_kelamin': selectedJenkel.substring(0, 1),
+        'pict': RandomImage().getImageUrl()
       });
       if (apiResponse.reqStatus == ReqStatus.done) {
         Toast().showSuccess(

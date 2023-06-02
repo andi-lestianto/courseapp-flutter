@@ -99,7 +99,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                       showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
+                        firstDate: DateTime(1980),
                         lastDate: DateTime(2099),
                       ).then(
                         (date) {
