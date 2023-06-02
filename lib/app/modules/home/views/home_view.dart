@@ -1,3 +1,4 @@
+import 'package:courseapp/app/helper/authcontroller.dart';
 import 'package:courseapp/app/helper/mainnavigation_helper.dart';
 import 'package:courseapp/app/model/page_model.dart';
 import 'package:courseapp/app/modules/course/views/course_view.dart';
@@ -84,60 +85,63 @@ class HomeView extends GetView<HomeController> {
               ),
             ],
           ),
-          drawer: Container(
-            width: 1.sw * 0.75,
-            decoration: BoxDecoration(color: ColorTheme.white),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 260.w,
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 125.w,
-                        decoration: BoxDecoration(color: ColorTheme.mainBlue),
-                      ),
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: ScreenUtil().statusBarHeight,
-                          ),
-                          SizedBox(
-                            height: 40.w,
-                          ),
-                          Center(
-                            child: SizedBox(
-                                height: 125.w,
-                                width: 125.w,
-                                child: NetworkImageWidget()),
-                          ),
-                          SizedBox(
-                            height: 20.w,
-                          ),
-                          Text(
-                            'Andi Lestianto',
-                            style: FontTheme.semibold.copyWith(
-                                color: ColorTheme.darkGray, fontSize: 16.sp),
-                          ),
-                          SizedBox(
-                            height: 5.w,
-                          ),
-                          Text(
-                            'andi@gmail.com',
-                            style: FontTheme.regular.copyWith(
-                                color: ColorTheme.darkGray, fontSize: 12.sp),
-                          ),
-                        ],
-                      )
-                    ],
+          drawer: GetBuilder<AuthController>(
+            init: AuthController(),
+            builder: (authCtrl) => Container(
+              width: 1.sw * 0.75,
+              decoration: BoxDecoration(color: ColorTheme.white),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 260.w,
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 125.w,
+                          decoration: BoxDecoration(color: ColorTheme.mainBlue),
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: ScreenUtil().statusBarHeight,
+                            ),
+                            SizedBox(
+                              height: 40.w,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                  height: 125.w,
+                                  width: 125.w,
+                                  child: NetworkImageWidget()),
+                            ),
+                            SizedBox(
+                              height: 20.w,
+                            ),
+                            Text(
+                              authCtrl.loggedUser!.name.toString(),
+                              style: FontTheme.semibold.copyWith(
+                                  color: ColorTheme.darkGray, fontSize: 16.sp),
+                            ),
+                            SizedBox(
+                              height: 5.w,
+                            ),
+                            Text(
+                              authCtrl.loggedUser!.email.toString(),
+                              style: FontTheme.regular.copyWith(
+                                  color: ColorTheme.darkGray, fontSize: 12.sp),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                ...List.generate(
-                    4,
-                    (index) => NavigationWidget(
-                        currentRoute: _.currentRoute,
-                        data: index < 3 ? PageModel.pageData[index] : null))
-              ],
+                  ...List.generate(
+                      4,
+                      (index) => NavigationWidget(
+                          currentRoute: _.currentRoute,
+                          data: index < 3 ? PageModel.pageData[index] : null))
+                ],
+              ),
             ),
           ),
         ),

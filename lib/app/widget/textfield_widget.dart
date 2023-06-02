@@ -54,7 +54,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                       widget.isDatePicker == true || widget.isDisable == true
                           ? true
                           : false,
-                  obscureText: obsecureTxt,
+                  obscureText: widget.isPassword == true ? obsecureTxt : false,
                   controller: widget.textEditingController,
                   style: FontTheme.base.copyWith(fontSize: 12.sp),
                   decoration: InputDecoration(

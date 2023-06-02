@@ -1,3 +1,4 @@
+import 'package:courseapp/app/model/apiresponse.dart';
 import 'package:courseapp/app/routes/app_pages.dart';
 import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
@@ -67,11 +68,15 @@ class LoginView extends GetView<LoginController> {
                 SizedBox(
                   height: 32.w,
                 ),
-                CustomBtnWidget(
-                    label: 'Login',
-                    onPressed: () {
-                      Get.offAllNamed(Routes.HOME);
-                    }),
+                _.userLogged.reqStatus == ReqStatus.loading
+                    ? CircularProgressIndicator(
+                        color: ColorTheme.mainBlue,
+                      )
+                    : CustomBtnWidget(
+                        label: 'Login',
+                        onPressed: () {
+                          _.processLogin();
+                        }),
                 SizedBox(
                   height: 32.w,
                 ),

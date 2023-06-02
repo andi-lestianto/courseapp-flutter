@@ -20,4 +20,21 @@ class Toast {
         margin: EdgeInsets.all(20.w),
         duration: const Duration(milliseconds: 3000));
   }
+
+  showSuccess({required String title, required String message}) {
+    Get.snackbar(title, message,
+        boxShadows: [
+          BoxShadow(
+              color: ColorTheme.black.withOpacity(0.05),
+              blurRadius: 6,
+              spreadRadius: 4,
+              offset: const Offset(2, 2))
+        ],
+        backgroundColor: ColorTheme.mainBlue,
+        colorText: ColorTheme.white,
+        icon: const Icon(Icons.done, color: Colors.white),
+        snackPosition: SnackPosition.TOP,
+        margin: EdgeInsets.all(20.w),
+        duration: const Duration(milliseconds: 3000));
+  }
 }
