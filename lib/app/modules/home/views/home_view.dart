@@ -26,7 +26,6 @@ class HomeView extends GetView<HomeController> {
             return true;
           } else {
             if (MainNavigation.homeNav.currentState!.canPop()) {
-              print('object');
               MainNavigation.homeNav.currentState!.maybePop();
               return false;
             }

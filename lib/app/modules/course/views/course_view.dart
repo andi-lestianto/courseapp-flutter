@@ -30,6 +30,7 @@ class CourseView extends GetView<CourseController> {
                     itemCount: 10,
                     itemBuilder: (context, index) => DataContainerWidget(
                           showProfilePict: false,
+                          onEdit: () {},
                         )),
               )
             ],

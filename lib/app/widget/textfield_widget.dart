@@ -7,12 +7,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 class TextFieldWidget extends StatefulWidget {
   final String label;
   final TextEditingController textEditingController;
+  final bool? isDisable;
   final bool? isPassword;
+  final bool? isDatePicker;
   const TextFieldWidget(
       {super.key,
       required this.label,
       required this.textEditingController,
-      this.isPassword});
+      this.isPassword,
+      this.isDatePicker,
+      this.isDisable});
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -40,28 +44,82 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         SizedBox(
           height: 8.w,
         ),
-        TextField(
-          obscureText: showPass,
-          controller: widget.textEditingController,
-          style: FontTheme.base.copyWith(fontSize: 12.sp),
-          decoration: InputDecoration(
-              suffixIconConstraints:
-                  BoxConstraints(minHeight: 24.w, minWidth: 24.w),
-              suffixIcon: widget.isPassword == true
-                  ? Padding(
-                      padding: EdgeInsets.only(right: 12.w),
-                      child: InkWell(
-                        onTap: () => changeObsecureTxt(),
-                        child: SvgPicture.asset(showPass
-                            ? 'assets/icon/ic-eyeslash.svg'
-                            : 'assets/icon/ic-eye.svg'),
-                      ))
-                  : null,
-              filled: true,
-              fillColor: ColorTheme.whiteGray,
-              border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(8.r))),
+        Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: 50.w,
+                child: TextField(
+                  readOnly:
+                      widget.isDatePicker == true || widget.isDisable == true
+                          ? true
+                          : false,
+                  obscureText: showPass,
+                  controller: widget.textEditingController,
+                  style: FontTheme.base.copyWith(fontSize: 12.sp),
+                  decoration: InputDecoration(
+                      suffixIconConstraints:
+                          BoxConstraints(minHeight: 24.w, minWidth: 24.w),
+                      suffixIcon: widget.isPassword == true
+                          ? Padding(
+                              padding: EdgeInsets.only(right: 12.w),
+                              child: InkWell(
+                                onTap: () => changeObsecureTxt(),
+                                child: SvgPicture.asset(showPass
+                                    ? 'assets/icon/ic-eyeslash.svg'
+                                    : 'assets/icon/ic-eye.svg'),
+                              ))
+                          : null,
+                      filled: true,
+                      fillColor: widget.isDisable == true
+                          ? ColorTheme.gray
+                          : ColorTheme.whiteGray,
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(8.r))),
+                ),
+              ),
+            ),
+            if (widget.isDatePicker == true)
+              Row(
+                children: [
+                  SizedBox(
+                    width: 12.w,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2099),
+                      ).then(
+                        (date) {
+                          if (date != null) {
+                            widget.textEditingController.text =
+                                date.toString().split(' ').first;
+                          }
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: 50.w,
+                      width: 50.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          color: ColorTheme.whiteGray),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          'assets/icon/ic-calendar.svg',
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              )
+          ],
         )
       ],
     );

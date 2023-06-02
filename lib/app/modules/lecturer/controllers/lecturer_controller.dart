@@ -3,7 +3,17 @@ import 'package:get/get.dart';
 
 class LecturerController extends GetxController {
   final TextEditingController searchController = TextEditingController();
-  //TODO: Implement LecturerController
+  final TextEditingController nidnController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController alamatController = TextEditingController();
+  final TextEditingController tanggalController = TextEditingController();
+
+  String selectedJenkel = 'Laki - Laki';
+
+  updateJenkel(String value) {
+    selectedJenkel = value;
+    update();
+  }
 
   final count = 0.obs;
   @override

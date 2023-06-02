@@ -28,12 +28,16 @@ class LecturerView extends GetView<LecturerController> {
                     physics: BouncingScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 10,
-                    itemBuilder: (context, index) => DataContainerWidget()),
+                    itemBuilder: (context, index) => DataContainerWidget(
+                          onEdit: () {
+                            ModifyLecturerDialog().show(context, isAdd: false);
+                          },
+                        )),
               )
             ],
           ),
           floatingActionButton: FabWidget(onPressed: () {
-            ModifyLecturerDialog().show(context);
+            ModifyLecturerDialog().show(context, isAdd: true);
           })),
     );
   }

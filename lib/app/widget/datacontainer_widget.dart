@@ -2,13 +2,16 @@ import 'package:courseapp/app/theme/color_theme.dart';
 import 'package:courseapp/app/theme/font_theme.dart';
 import 'package:courseapp/app/widget/networkimage_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DataContainerWidget extends StatelessWidget {
   final bool? showProfilePict;
-  const DataContainerWidget({super.key, this.showProfilePict = true});
+  final Function onEdit;
+  const DataContainerWidget(
+      {super.key, this.showProfilePict = true, required this.onEdit});
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +49,15 @@ class DataContainerWidget extends StatelessWidget {
               ),
             ],
           )),
-          SvgPicture.asset(
-            'assets/icon/ic-edit.svg',
-            width: 24.w,
-            height: 24.w,
+          InkWell(
+            onTap: () {
+              onEdit();
+            },
+            child: SvgPicture.asset(
+              'assets/icon/ic-edit.svg',
+              width: 24.w,
+              height: 24.w,
+            ),
           )
         ],
       ),

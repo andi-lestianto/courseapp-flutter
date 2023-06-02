@@ -28,7 +28,9 @@ class UserView extends GetView<UserController> {
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 10,
-                  itemBuilder: (context, index) => DataContainerWidget()),
+                  itemBuilder: (context, index) => DataContainerWidget(
+                        onEdit: () {},
+                      )),
             )
           ],
         ),
