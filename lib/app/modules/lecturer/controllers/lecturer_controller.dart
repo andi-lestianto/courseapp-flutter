@@ -15,6 +15,8 @@ class LecturerController extends GetxController {
   final TextEditingController alamatController = TextEditingController();
   final TextEditingController tanggalController = TextEditingController();
 
+  bool btnLoading = false;
+
   String selectedJenkel = 'Laki - Laki';
 
   updateJenkel(String value) {
@@ -62,6 +64,8 @@ class LecturerController extends GetxController {
   }
 
   Future<void> insertLecturer() async {
+    btnLoading = true;
+    update();
     if (nidnController.text == '' ||
         nameController.text == '' ||
         alamatController.text == '' ||
@@ -87,9 +91,13 @@ class LecturerController extends GetxController {
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
+    btnLoading = false;
+    update();
   }
 
   Future<void> updateLecturer() async {
+    btnLoading = true;
+    update();
     if (nidnController.text == '' ||
         nameController.text == '' ||
         alamatController.text == '' ||
@@ -115,6 +123,8 @@ class LecturerController extends GetxController {
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
+    btnLoading = false;
+    update();
   }
 
   Future<void> deleteLecturer(String nidn) async {

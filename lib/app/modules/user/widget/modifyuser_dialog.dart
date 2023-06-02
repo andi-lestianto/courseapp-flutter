@@ -59,15 +59,25 @@ class ModifyUserDialog {
                 SizedBox(
                   height: 18.w,
                 ),
-                CustomBtnWidget(
-                    label: 'Simpan',
-                    onPressed: () {
-                      if (isAdd) {
-                        _.insertUser();
-                      } else {
-                        _.updateUser(idUser.toString());
-                      }
-                    }),
+                _.btnLoading
+                    ? SizedBox(
+                        height: 50.w,
+                        width: 1.sw,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: ColorTheme.mainBlue,
+                          ),
+                        ),
+                      )
+                    : CustomBtnWidget(
+                        label: 'Simpan',
+                        onPressed: () {
+                          if (isAdd) {
+                            _.insertUser();
+                          } else {
+                            _.updateUser(idUser.toString());
+                          }
+                        }),
               ],
             ),
           ),

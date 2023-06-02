@@ -15,6 +15,8 @@ class CourseController extends GetxController {
   final TextEditingController sksController = TextEditingController();
   final TextEditingController semesterController = TextEditingController();
 
+  bool btnLoading = false;
+
   List<String> lecturerData = [];
   String? selectedLecturer;
 
@@ -82,6 +84,8 @@ class CourseController extends GetxController {
   }
 
   Future<void> insertCourse() async {
+    btnLoading = true;
+    update();
     if (idController.text == '' ||
         nameController.text == '' ||
         sksController.text == '' ||
@@ -105,9 +109,13 @@ class CourseController extends GetxController {
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
+    btnLoading = false;
+    update();
   }
 
   Future<void> updateCourse(String idmatkul) async {
+    btnLoading = true;
+    update();
     if (idController.text == '' ||
         nameController.text == '' ||
         sksController.text == '' ||
@@ -132,6 +140,8 @@ class CourseController extends GetxController {
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
+    btnLoading = false;
+    update();
   }
 
   Future<void> deleteCourse(String idmatkul) async {

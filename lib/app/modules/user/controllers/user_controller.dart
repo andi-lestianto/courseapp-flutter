@@ -15,6 +15,8 @@ class UserController extends GetxController {
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPassController = TextEditingController();
 
+  bool btnLoading = false;
+
   fillTextField(UserModel data) {
     nameController.text = data.name.toString();
     emailController.text = data.email.toString();
@@ -47,6 +49,8 @@ class UserController extends GetxController {
   }
 
   Future<void> insertUser() async {
+    btnLoading = true;
+    update();
     if (nameController.text == '' ||
         emailController.text == '' ||
         passController.text == '' ||
@@ -72,9 +76,13 @@ class UserController extends GetxController {
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
+    btnLoading = false;
+    update();
   }
 
   Future<void> updateUser(String idUser) async {
+    btnLoading = true;
+    update();
     if (nameController.text == '' ||
         emailController.text == '' ||
         passController.text == '' ||
@@ -101,6 +109,8 @@ class UserController extends GetxController {
             .showAlert(title: 'Gagal', message: apiResponse.message.toString());
       }
     }
+    btnLoading = false;
+    update();
   }
 
   Future<void> deleteUser(String idUser) async {

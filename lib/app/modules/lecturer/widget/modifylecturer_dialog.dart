@@ -72,15 +72,25 @@ class ModifyLecturerDialog {
                 SizedBox(
                   height: 18.w,
                 ),
-                CustomBtnWidget(
-                    label: 'Simpan',
-                    onPressed: () {
-                      if (isAdd) {
-                        _.insertLecturer();
-                      } else {
-                        _.updateLecturer();
-                      }
-                    }),
+                _.btnLoading
+                    ? SizedBox(
+                        height: 50.w,
+                        width: 1.sw,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: ColorTheme.mainBlue,
+                          ),
+                        ),
+                      )
+                    : CustomBtnWidget(
+                        label: 'Simpan',
+                        onPressed: () {
+                          if (isAdd) {
+                            _.insertLecturer();
+                          } else {
+                            _.updateLecturer();
+                          }
+                        }),
               ],
             ),
           ),
