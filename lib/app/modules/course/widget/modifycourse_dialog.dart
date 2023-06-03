@@ -72,7 +72,7 @@ class ModifyCourseDialog {
                   height: 18.w,
                 ),
                 DropdownBtnWidget(
-                    label: 'Jenis Kelamin',
+                    label: 'Dosen Pengampu',
                     data: _.lecturerData,
                     selectedValue: _.selectedLecturer.toString(),
                     onSelected: (value) {
